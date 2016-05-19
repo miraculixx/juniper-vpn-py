@@ -1,0 +1,8 @@
+argparse==1.2.1
+mechanize==0.2.5
+netifaces==0.10.4
+pyasn1==0.1.9
+pyasn1-modules==0.0.5
+pycurl==7.43.0
+urlgrabber==3.9.1
+wsgiref==0.1.2
