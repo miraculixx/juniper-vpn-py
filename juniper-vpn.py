@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import subprocess
@@ -22,6 +22,7 @@ import platform
 import socket
 import netifaces
 import datetime
+import re
 
 debug = False
 
@@ -229,6 +230,14 @@ class juniper_vpn(object):
     def action_key(self):
         # Enter key
         self.needs_2factor = True
+
+        # get challenge text for two-factor key
+        text = self.br.response().read()
+        p = re.compile("(Challenge: .*)\n")
+        challenge = re.search(p, text)
+        if challenge is not None:
+             print challenge.group(0)
+
         if self.args.oath:
             if self.last_action == 'key':
                 print 'Login failed (Invalid OATH key)'
